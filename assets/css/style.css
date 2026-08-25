@@ -859,6 +859,201 @@ p {
   max-width: 62ch;
 }
 
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding-top: 10px;
+}
+
+.team-card {
+  position: relative;
+  min-height: 390px;
+  padding: 0 32px 28px;
+}
+
+.team-card::before {
+  content: "";
+  position: absolute;
+  inset: 150px 0 0;
+  border: 1.5px solid #bfe8ff;
+  border-radius: 24px;
+  background: var(--white);
+}
+
+.team-photo {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 286px);
+  aspect-ratio: 1 / 0.96;
+  height: auto;
+  margin: 0 auto 46px;
+  border-radius: 50% 50% 50% 10% / 50% 50% 22% 10%;
+  overflow: hidden;
+  background: var(--soft);
+  box-shadow: -12px 15px 0 #f2f6fb;
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.team-info {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 76px;
+  padding: 0;
+}
+
+.team-info h3 {
+  margin-bottom: 4px;
+  color: var(--ink);
+  font-size: clamp(24px, 1.75vw, 30px);
+  line-height: 1.08;
+  font-weight: 950;
+}
+
+.team-info p {
+  margin-bottom: 0;
+  color: #6d6d6d;
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.team-share {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: var(--white);
+  font-size: 24px;
+  transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease;
+}
+
+.team-share:hover,
+.team-share:focus-visible {
+  background: var(--cyan);
+  color: var(--navy);
+  transform: translateY(-2px);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.pricing-card {
+  position: relative;
+  isolation: isolate;
+  padding: 40px 34px 34px;
+  border: 1px solid var(--line);
+  border-bottom: 5px solid var(--blue);
+  border-radius: 20px;
+  background: var(--white);
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.pricing-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -14px;
+  left: -14px;
+  right: 22px;
+  bottom: 22px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(21, 91, 219, 0.05);
+}
+
+.pricing-card h3 {
+  margin-bottom: 22px;
+  font-size: clamp(22px, 1.7vw, 26px);
+}
+
+.pricing-amount {
+  color: var(--blue);
+  font-size: clamp(40px, 4vw, 52px);
+  font-weight: 950;
+  line-height: 1;
+}
+
+.pricing-subtitle {
+  margin: 10px 0 22px;
+  color: var(--blue);
+  font-weight: 850;
+  font-size: 17px;
+}
+
+.pricing-divider {
+  width: 78%;
+  margin: 0 auto 26px;
+  border-top: 2px dotted var(--blue);
+  opacity: 0.5;
+}
+
+.pricing-list {
+  display: grid;
+  gap: 16px;
+  margin: 0 0 30px;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.pricing-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.pricing-list li i {
+  font-size: 22px;
+  color: var(--line);
+}
+
+.pricing-list li.on {
+  color: var(--ink);
+}
+
+.pricing-list li.on i {
+  color: var(--blue);
+}
+
+.btn-pricing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 58px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+  font-weight: 900;
+  transition: border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
+}
+
+.btn-pricing:hover,
+.btn-pricing:focus-visible {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: var(--white);
+}
+
 .flow-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1131,13 +1326,6 @@ p {
   overflow: hidden;
 }
 
-.wcu-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: repeating-linear-gradient(115deg, rgba(21, 91, 219, 0.05) 0px, rgba(21, 91, 219, 0.05) 1px, transparent 1px, transparent 48px);
-}
 
 .wcu-head h2 {
   margin-top: 14px;
@@ -2276,13 +2464,66 @@ input:-webkit-autofill:focus {
 
 .legal-layout {
   display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  align-items: start;
   gap: 22px;
-  max-width: 980px;
+  max-width: 1120px;
+}
+
+.legal-nav {
+  position: sticky;
+  top: 112px;
+  display: grid;
+  gap: 8px;
+  padding: 22px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 14px 30px rgba(0, 23, 31, 0.07);
+}
+
+.legal-nav strong {
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: var(--navy);
+  text-transform: uppercase;
+}
+
+.legal-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-weight: 850;
+  line-height: 1.25;
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+}
+
+.legal-nav a:hover,
+.legal-nav a:focus-visible {
+  transform: translateX(3px);
+  background: var(--soft);
+  color: var(--blue);
+}
+
+.legal-stack {
+  display: grid;
+  gap: 22px;
 }
 
 .legal-card h2 {
   margin-bottom: 12px;
   font-size: clamp(28px, 3vw, 44px);
+}
+
+.legal-card {
+  scroll-margin-top: 124px;
+}
+
+.legal-card p:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 1180px) {
@@ -2330,7 +2571,9 @@ input:-webkit-autofill:focus {
   .why-grid,
   .process-grid,
   .trust-grid,
-  .flow-grid {
+  .flow-grid,
+  .team-grid,
+  .pricing-grid {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -2425,9 +2668,53 @@ input:-webkit-autofill:focus {
   .project-grid,
   .footer-grid,
   .form-grid,
+  .legal-layout,
   .trust-grid,
-  .flow-grid {
+  .flow-grid,
+  .team-grid,
+  .pricing-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pricing-card::before {
+    left: -8px;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .legal-nav {
+    position: sticky;
+    top: 76px;
+    z-index: 8;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px;
+    scrollbar-width: none;
+  }
+
+  .legal-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .legal-nav strong {
+    display: none;
+  }
+
+  .legal-nav a {
+    min-height: 40px;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .legal-nav a:hover,
+  .legal-nav a:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  .team-grid {
+    max-width: 360px;
+    margin-inline: auto;
   }
 
   .trust-banner-content {
