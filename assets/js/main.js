@@ -141,6 +141,23 @@
         }
       });
     });
+    document.querySelectorAll(".wcu-swiper").forEach((node) => {
+      new Swiper(node, {
+        loop: true,
+        speed: 650,
+        spaceBetween: 24,
+        autoplay: { delay: 3800, disableOnInteraction: false },
+        navigation: {
+          nextEl: node.parentElement.querySelector(".swiper-next"),
+          prevEl: node.parentElement.querySelector(".swiper-prev")
+        },
+        breakpoints: {
+          0: { slidesPerView: 1 },
+          680: { slidesPerView: 2 },
+          1100: { slidesPerView: 3 }
+        }
+      });
+    });
     document.querySelectorAll(".testimonial-swiper").forEach((node) => {
       new Swiper(node, {
         loop: true,
