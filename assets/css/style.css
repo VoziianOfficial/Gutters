@@ -70,6 +70,10 @@ textarea {
   background: var(--soft);
 }
 
+.problems-section {
+  padding-top: 0;
+}
+
 .section.dark {
   background: var(--navy);
   color: var(--white);
