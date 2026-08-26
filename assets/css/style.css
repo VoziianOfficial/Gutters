@@ -3321,6 +3321,11 @@ input:-webkit-autofill:focus {
   align-items: start;
 }
 
+.installation-detail-section .detail-grid > [data-aos="fade-left"] {
+  position: sticky;
+  top: 116px;
+}
+
 .detail-grid img {
   width: 100%;
   height: 530px;
@@ -3521,6 +3526,24 @@ input:-webkit-autofill:focus {
     --hero-y: 58px;
   }
 
+  body {
+    padding-top: 78px;
+  }
+
+  .site-topbar {
+    display: none;
+  }
+
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 70;
+  }
+
+  .header-inner {
+    min-height: 78px;
+  }
+
   .container {
     width: min(calc(100% - 36px), var(--container));
   }
@@ -3554,15 +3577,41 @@ input:-webkit-autofill:focus {
     margin-inline: auto;
   }
 
+  .pill-label {
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+  }
+
+  .section-head .pill-label,
+  .about-copy .pill-label,
+  .about-detail-left .pill-label,
+  .faq-detail-head .pill-label,
+  .process-detail-head .pill-label,
+  .trust-head .pill-label {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .section-head {
     display: grid;
     align-items: center;
     justify-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
   }
 
   .section-head .swiper-tools {
     justify-content: center;
+  }
+
+  .faq-section .pill-label {
+    display: none;
   }
 
   .hero-inner {
@@ -3663,6 +3712,10 @@ input:-webkit-autofill:focus {
   .pricing-grid,
   .process-detail-grid {
     grid-template-columns: 1fr;
+  }
+
+  .installation-detail-section .detail-grid > [data-aos="fade-left"] {
+    position: static;
   }
 
   .check-list {
@@ -3876,6 +3929,10 @@ input:-webkit-autofill:focus {
     --section-y: 56px;
     --section-head-gap: 24px;
     --hero-y: 50px;
+  }
+
+  body {
+    padding-top: 76px;
   }
 
   .container {
