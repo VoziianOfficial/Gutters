@@ -3243,6 +3243,15 @@ input:-webkit-autofill:focus {
   color: var(--white);
 }
 
+.footer-legal-disclaimer {
+  padding-bottom: 26px;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.footer-legal-disclaimer p {
+  max-width: 760px;
+}
+
 .footer-links {
   display: grid;
   gap: 13px;

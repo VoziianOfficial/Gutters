@@ -1,25 +1,4 @@
 (function () {
-  const config = window.SiteConfig || {};
-
-  function applyConfig() {
-    if (config.browserTitle) document.title = config.browserTitle;
-    document.querySelectorAll("[data-company]").forEach((node) => {
-      node.textContent = config.companyName || "Flowline Gutters";
-    });
-    document.querySelectorAll("[data-email]").forEach((node) => {
-      node.textContent = config.email || "";
-      if (node.tagName === "A") node.href = "mailto:" + (config.email || "");
-    });
-    document.querySelectorAll("[data-disclaimer]").forEach((node) => {
-      node.textContent = config.disclaimer || "";
-    });
-    document.querySelectorAll("[data-logo]").forEach((img) => {
-      img.src = config.logo || "assets/icons/logo.svg";
-    });
-    const favicon = document.querySelector("link[rel='icon']");
-    if (favicon && config.favicon) favicon.href = config.favicon;
-  }
-
   function initMenu() {
     const toggle = document.querySelector("[data-menu-toggle]");
     const close = document.querySelector("[data-menu-close]");
@@ -248,7 +227,6 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    applyConfig();
     initMenu();
     initAccordions();
     initCookieCard();

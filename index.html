@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flowline Gutters | Premium Gutter Services</title>
+  <title data-config="browserTitle"></title>
   <meta name="description" content="Premium gutter installation, cleaning, repair, downspouts, gutter guards, drainage support, and maintenance matching.">
-  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link data-config="favicon" rel="icon" href="" type="image/svg+xml">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
   <link rel="stylesheet" href="https://unpkg.com/@tabler/icons-webfont@3.21.0/dist/tabler-icons.min.css">
@@ -17,7 +17,7 @@
   <div class="site-topbar">
     <div class="container topbar-inner">
       <span>Opening Hours: Monday to Saturday</span>
-      <a data-email href="mailto:hello@flowline-gutters.example">hello@flowline-gutters.example</a>
+      <a data-config="email" href=""></a>
       <span class="optional">Focused on gutters, downspouts, guards, and drainage</span>
     </div>
   </div>
@@ -25,8 +25,8 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Home">
-        <img data-logo src="assets/icons/logo.svg" alt="">
-        <span class="brand-text" data-company>Flowline Gutters</span>
+        <img data-config="logo" src="" alt="">
+        <span class="brand-text" data-config="companyName"></span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a class="nav-link" href="index.html">Home</a>
@@ -49,7 +49,7 @@
 
   <div class="mobile-menu" data-mobile-menu>
     <button class="menu-close" type="button" data-menu-close aria-label="Close menu"><i class="ph ph-x" aria-hidden="true"></i></button>
-    <a class="mobile-menu-brand" href="index.html"><img data-logo src="assets/icons/logo.svg" alt=""><span data-company>Flowline Gutters</span></a>
+    <a class="mobile-menu-brand" href="index.html"><img data-config="logo" src="" alt=""><span data-config="companyName"></span></a>
     <nav aria-label="Mobile navigation">
       <a href="index.html">Home</a>
       <a href="#about">About Us</a>
@@ -60,7 +60,7 @@
     </nav>
     <div class="mobile-menu-footer">
       <a class="btn alt mobile-menu-cta" href="#contact">Request Free Quote</a>
-      <a class="mobile-menu-contact" data-email href="mailto:hello@flowline-gutters.example"><i class="ph ph-envelope-simple" aria-hidden="true"></i>hello@flowline-gutters.example</a>
+      <a class="mobile-menu-contact" data-config="email" href=""></a>
     </div>
   </div>
 
@@ -244,7 +244,7 @@
         <div class="about-copy" data-aos="fade-right">
           <span class="pill-label">About Us</span>
           <h2>Water Flows Right.</h2>
-          <p>Flowline Gutters helps homeowners compare gutter-focused specialists for installation, cleaning, repairs, guards, and downspout work. Every match starts with the roofline, surrounding trees, drainage pressure, and the service outcome you need.</p>
+          <p><span data-config="companyName"></span> helps homeowners compare gutter-focused specialists for installation, cleaning, repairs, guards, and downspout work. Every match starts with the roofline, surrounding trees, drainage pressure, and the service outcome you need.</p>
           <div class="feature-strip">
             <div><i class="ti ti-ruler-measure" aria-hidden="true"></i>Seamless Installation</div>
             <div><i class="ti ti-droplet" aria-hidden="true"></i>Drainage Planning</div>
@@ -276,7 +276,7 @@
             <svg viewBox="0 0 160 160">
               <defs><path id="aboutSincePath" d="M 80,80 m -62,0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0"/></defs>
               <circle class="dash-ring" cx="80" cy="80" r="76"></circle>
-              <text><textPath href="#aboutSincePath" startOffset="0%">We Are Flowline • Since 2013 • </textPath></text>
+              <text><textPath data-config="companyName" data-config-prefix="We Are " data-config-suffix=" • Since 2013 • " href="#aboutSincePath" startOffset="0%"></textPath></text>
             </svg>
             <span class="about-since-icon"><i class="ph ph-drop" aria-hidden="true"></i></span>
           </div>
@@ -346,7 +346,7 @@
               <span class="steps-contact-icon"><i class="ph ph-envelope-simple" aria-hidden="true"></i></span>
               <div class="steps-contact-text">
                 <strong>Email Us Anytime</strong>
-                <span>hello@flowline-gutters.example</span>
+                <span data-config="email"></span>
               </div>
             </div>
           </div>
@@ -634,7 +634,7 @@
             <div class="contact-aside-content" data-aos="fade-right">
               <h2>Book Gutter Service.</h2>
               <p>Tell us what is happening at the roofline. We will route the request by service type through email and the form.</p>
-              <p><strong>Email:</strong> <a data-email href="mailto:hello@flowline-gutters.example">hello@flowline-gutters.example</a></p>
+              <p><strong>Email:</strong> <a data-config="email" href=""></a></p>
             </div>
           </div>
           <div class="contact-aside-features" data-aos="fade-up">
@@ -711,10 +711,10 @@
     <div class="container footer-grid">
       <div>
         <a class="brand" href="index.html">
-          <img data-logo src="assets/icons/logo.svg" alt="">
-          <span class="brand-text" data-company>Flowline Gutters</span>
+          <img data-config="logo" src="" alt="">
+          <span class="brand-text" data-config="companyName"></span>
         </a>
-        <p data-disclaimer>Flowline Gutters is an independent gutter services aggregator. Service availability, credentials, insurance, and final estimates should be confirmed directly before booking.</p>
+        <p data-config="disclaimer"></p>
       </div>
       <div>
         <h3>Menu</h3>
@@ -735,7 +735,7 @@
       <div>
         <h3>Contact</h3>
         <nav class="footer-links">
-          <a data-email href="mailto:hello@flowline-gutters.example">hello@flowline-gutters.example</a>
+          <a data-config="email" href=""></a>
           <a href="privacy-policy.html">Privacy Policy</a>
           <a href="terms.html">Terms</a>
           <a href="cookies.html">Cookies</a>
@@ -743,7 +743,7 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <span>Copyright © 2026 <span data-company>Flowline Gutters</span>. All Rights Reserved.</span>
+      <span>Copyright © 2026 <span data-config="companyName"></span>. All Rights Reserved.</span>
       <span><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms.html">Terms</a> · <a href="cookies.html">Cookies</a></span>
     </div>
   </footer>
@@ -759,6 +759,6 @@
   <script src="config/config.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/global.js"></script><script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -49,12 +49,15 @@ if (!in_array($service, $allowedServices, true)) {
 }
 
 $configPath = __DIR__ . '/config/config.js';
-$recipient = 'hello@flowline-gutters.example';
-if (is_readable($configPath)) {
-    $config = file_get_contents($configPath);
-    if (preg_match('/email:\s*"([^"]+)"/', (string)$config, $match) === 1) {
-        $recipient = $match[1];
-    }
+$recipient = '';
+if (is_readable($configPath) && preg_match('/email:\s*"([^"]+)"/', (string)file_get_contents($configPath), $match) === 1) {
+    $recipient = $match[1];
+}
+
+if ($recipient === '') {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Site email is not configured']);
+    exit;
 }
 
 $submission = [
