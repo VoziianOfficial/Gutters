@@ -158,6 +158,18 @@
         }
       });
     });
+    document.querySelectorAll(".testimonial-banner-swiper").forEach((node) => {
+      new Swiper(node, {
+        loop: true,
+        speed: 650,
+        slidesPerView: 1,
+        autoplay: { delay: 5000, disableOnInteraction: false },
+        pagination: {
+          el: node.querySelector(".swiper-pagination"),
+          clickable: true
+        }
+      });
+    });
     document.querySelectorAll(".testimonial-swiper").forEach((node) => {
       new Swiper(node, {
         loop: true,

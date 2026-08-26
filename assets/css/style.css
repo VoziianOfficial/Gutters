@@ -898,7 +898,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 18%;
 }
 
 .team-info {
@@ -951,6 +951,7 @@ p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+  padding-top: 8px;
 }
 
 .pricing-card {
@@ -963,6 +964,8 @@ p {
   background: var(--white);
   text-align: center;
   box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.26s ease, border-color 0.26s ease, background 0.26s ease, box-shadow 0.26s ease;
 }
 
 .pricing-card::before {
@@ -976,11 +979,49 @@ p {
   border: 1px solid var(--line);
   border-radius: 20px;
   background: rgba(21, 91, 219, 0.05);
+  transition: transform 0.26s ease, background 0.26s ease, border-color 0.26s ease;
+}
+
+.pricing-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, rgba(8, 174, 234, 0.16), rgba(21, 91, 219, 0.04) 55%, rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 0.26s ease;
+}
+
+.pricing-card:hover,
+.pricing-card:focus-within {
+  transform: translateY(-10px);
+  border-color: rgba(8, 174, 234, 0.78);
+  border-bottom-color: var(--cyan);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 30px 62px rgba(0, 23, 31, 0.16);
+}
+
+.pricing-card:hover::before,
+.pricing-card:focus-within::before {
+  transform: translate(8px, 8px);
+  border-color: rgba(8, 174, 234, 0.56);
+  background: rgba(8, 174, 234, 0.14);
+}
+
+.pricing-card:hover::after,
+.pricing-card:focus-within::after {
+  opacity: 1;
 }
 
 .pricing-card h3 {
   margin-bottom: 22px;
   font-size: clamp(22px, 1.7vw, 26px);
+  transition: color 0.26s ease;
+}
+
+.pricing-card:hover h3,
+.pricing-card:focus-within h3 {
+  color: var(--blue);
 }
 
 .pricing-amount {
@@ -988,6 +1029,13 @@ p {
   font-size: clamp(40px, 4vw, 52px);
   font-weight: 950;
   line-height: 1;
+  transition: color 0.26s ease, transform 0.26s ease;
+}
+
+.pricing-card:hover .pricing-amount,
+.pricing-card:focus-within .pricing-amount {
+  color: var(--cyan);
+  transform: translateY(-2px);
 }
 
 .pricing-subtitle {
@@ -995,6 +1043,12 @@ p {
   color: var(--blue);
   font-weight: 850;
   font-size: 17px;
+  transition: color 0.26s ease;
+}
+
+.pricing-card:hover .pricing-subtitle,
+.pricing-card:focus-within .pricing-subtitle {
+  color: var(--navy);
 }
 
 .pricing-divider {
@@ -1002,6 +1056,13 @@ p {
   margin: 0 auto 26px;
   border-top: 2px dotted var(--blue);
   opacity: 0.5;
+  transition: border-color 0.26s ease, opacity 0.26s ease;
+}
+
+.pricing-card:hover .pricing-divider,
+.pricing-card:focus-within .pricing-divider {
+  border-color: var(--cyan);
+  opacity: 0.9;
 }
 
 .pricing-list {
@@ -1019,6 +1080,12 @@ p {
   gap: 12px;
   color: var(--muted);
   font-weight: 750;
+  transition: color 0.26s ease, transform 0.26s ease;
+}
+
+.pricing-card:hover .pricing-list li,
+.pricing-card:focus-within .pricing-list li {
+  transform: translateX(2px);
 }
 
 .pricing-list li i {
@@ -1032,6 +1099,12 @@ p {
 
 .pricing-list li.on i {
   color: var(--blue);
+  transition: color 0.26s ease;
+}
+
+.pricing-card:hover .pricing-list li.on i,
+.pricing-card:focus-within .pricing-list li.on i {
+  color: var(--cyan);
 }
 
 .btn-pricing {
@@ -1048,7 +1121,9 @@ p {
 }
 
 .btn-pricing:hover,
-.btn-pricing:focus-visible {
+.btn-pricing:focus-visible,
+.pricing-card:hover .btn-pricing,
+.pricing-card:focus-within .btn-pricing {
   border-color: var(--blue);
   background: var(--blue);
   color: var(--white);
@@ -1377,6 +1452,155 @@ p {
 
 .wcu-card p {
   margin-bottom: 0;
+}
+
+.wcu-card.dark-card {
+  background: var(--navy);
+}
+
+.wcu-card.dark-card::before {
+  border-color: var(--navy) transparent;
+}
+
+.wcu-card.dark-card h3 {
+  color: var(--white);
+}
+
+.wcu-card.dark-card p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.wcu-card.dark-card .icon-box {
+  background: var(--cyan);
+}
+
+.wcu-card.dark-card .icon-box i {
+  color: var(--white);
+}
+
+.testimonial-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: 44px;
+  padding: 56px 60px;
+  border-radius: 28px;
+  background: linear-gradient(120deg, var(--ink) 0%, var(--navy) 65%, var(--ink) 100%);
+}
+
+.testimonial-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M20 0 40 40 0 40Z' fill='%23ffffff' fill-opacity='0.06'/%3E%3C/svg%3E");
+  -webkit-mask-image: radial-gradient(circle at 15% 30%, black 0%, transparent 62%);
+  mask-image: radial-gradient(circle at 15% 30%, black 0%, transparent 62%);
+}
+
+.testimonial-quote-icon {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  margin-bottom: 30px;
+  border-radius: 14px;
+  background: var(--cyan);
+}
+
+.testimonial-quote-icon i {
+  color: var(--navy);
+  font-size: 30px;
+  line-height: 1;
+}
+
+.testimonial-banner-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 54px;
+}
+
+.testimonial-banner-swiper {
+  overflow: hidden;
+}
+
+.testimonial-banner-slide p {
+  max-width: 58ch;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.55;
+  font-weight: 650;
+}
+
+.testimonial-banner-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.testimonial-banner-author .author-bar {
+  width: 34px;
+  height: 3px;
+  flex: 0 0 34px;
+  border-radius: 2px;
+  background: var(--cyan);
+}
+
+.testimonial-banner-author strong {
+  display: block;
+  color: var(--white);
+  font-size: 22px;
+  font-weight: 950;
+}
+
+.testimonial-banner-author span {
+  display: block;
+  margin-top: 4px;
+  color: var(--cyan);
+  font-size: 15px;
+}
+
+.testimonial-banner-swiper .swiper-pagination {
+  position: static;
+  margin-top: 30px;
+  text-align: left;
+}
+
+.testimonial-banner-swiper .swiper-pagination-bullet {
+  width: 30px;
+  height: 8px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  opacity: 1;
+  transition: background 0.22s ease, border-color 0.22s ease;
+}
+
+.testimonial-banner-swiper .swiper-pagination-bullet-active {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.testimonial-banner-photo {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--blue);
+  box-shadow: 0 0 0 10px rgba(21, 91, 219, 0.18);
+}
+
+.testimonial-banner-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 12%;
 }
 
 .about-grid {
@@ -2547,8 +2771,26 @@ input:-webkit-autofill:focus {
   .faq-wrap,
   .contact-grid,
   .detail-grid,
-  .steps-grid {
+  .steps-grid,
+  .testimonial-banner-grid {
     grid-template-columns: 1fr;
+  }
+
+  .testimonial-banner-grid {
+    text-align: center;
+  }
+
+  .testimonial-banner-photo {
+    order: -1;
+    margin-inline: auto;
+  }
+
+  .testimonial-banner-author {
+    justify-content: center;
+  }
+
+  .testimonial-banner-swiper .swiper-pagination {
+    text-align: center;
   }
 
   .steps-photo {
@@ -2822,6 +3064,15 @@ input:-webkit-autofill:focus {
     order: -1;
   }
 
+  .testimonial-banner {
+    padding: 40px 26px;
+  }
+
+  .testimonial-banner-photo {
+    width: 170px;
+    height: 170px;
+  }
+
   .cookie-actions {
     width: 100%;
     justify-content: center;
@@ -2873,6 +3124,19 @@ input:-webkit-autofill:focus {
 
   .wcu-card .icon-box i {
     font-size: 34px;
+  }
+
+  .testimonial-quote-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 22px;
+  }
+
+  .testimonial-banner-photo {
+    width: 130px;
+    height: 130px;
+    border-width: 3px;
+    box-shadow: 0 0 0 6px rgba(21, 91, 219, 0.18);
   }
 
   .service-card,
