@@ -2551,7 +2551,7 @@ p {
 
 .faq-panel {
   height: 0;
-  padding: 18px 22px;
+  padding: 0;
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
@@ -2567,6 +2567,10 @@ p {
 
 .faq-panel p {
   margin-bottom: 0;
+}
+
+.faq-panel > * {
+  padding: 18px 22px;
 }
 
 .problems-section h2 {
@@ -2615,7 +2619,69 @@ p {
 }
 
 .problem-item .faq-panel {
+  padding: 0;
+}
+
+.problem-item .faq-panel > * {
   padding: 4px 24px 28px;
+}
+
+.problems-section .faq-item + .faq-item,
+.faq-section .faq-item + .faq-item,
+.installation-faq-section .faq-item + .faq-item,
+.cleaning-faq-section .faq-item + .faq-item {
+  margin-top: 8px;
+}
+
+.problems-section .faq-item button,
+.faq-section .faq-item button,
+.installation-faq-section .faq-item button,
+.cleaning-faq-section .faq-item button {
+  min-height: 0;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.problems-section .problem-item button {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.problems-section .problem-icon-box {
+  width: 44px;
+  height: 44px;
+  flex-basis: 44px;
+}
+
+.problems-section .faq-icon,
+.faq-section .faq-icon,
+.installation-faq-section .faq-icon,
+.cleaning-faq-section .faq-icon {
+  width: 34px;
+  height: 34px;
+  flex-basis: 34px;
+}
+
+.problems-section .problem-item .faq-icon {
+  width: 34px;
+  height: 34px;
+  flex-basis: 34px;
+}
+
+.problems-section .faq-panel,
+.faq-section .faq-panel,
+.installation-faq-section .faq-panel,
+.cleaning-faq-section .faq-panel {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.problems-section .faq-panel > *,
+.faq-section .faq-panel > *,
+.installation-faq-section .faq-panel > *,
+.cleaning-faq-section .faq-panel > * {
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
 
 .problem-panel-grid {
@@ -3631,6 +3697,10 @@ input:-webkit-autofill:focus {
   }
 
   .faq-panel {
+    padding: 0;
+  }
+
+  .faq-panel > * {
     padding: 15px 18px;
   }
 
