@@ -32,6 +32,14 @@
       document.body.classList.toggle("menu-open", open);
     };
 
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    menu.querySelectorAll("nav a").forEach((link) => {
+      const href = link.getAttribute("href") || "";
+      if (href.startsWith("#")) return;
+      const linkPath = href.split("#")[0].split("/").pop() || "index.html";
+      link.classList.toggle("is-current", linkPath === currentPath);
+    });
+
     toggle.addEventListener("click", () => setOpen(true));
     if (close) close.addEventListener("click", () => setOpen(false));
     menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
@@ -43,31 +51,52 @@
   function initAccordions() {
     document.querySelectorAll("[data-accordion]").forEach((group) => {
       const items = Array.from(group.querySelectorAll(".faq-item"));
-      const setPanelHeight = (panel, open) => {
-        if (open) {
-          panel.style.height = panel.scrollHeight + "px";
-          panel.addEventListener("transitionend", function onOpenEnd(event) {
-            if (event.propertyName !== "height") return;
-            panel.removeEventListener("transitionend", onOpenEnd);
-            if (panel.closest(".faq-item")?.classList.contains("is-open")) panel.style.height = "auto";
-          });
-          return;
+      const finishTransition = (panel) => {
+        if (panel._accordionEnd) {
+          panel.removeEventListener("transitionend", panel._accordionEnd);
+          panel._accordionEnd = null;
         }
-
-        const currentHeight = panel.offsetHeight;
-        panel.style.height = currentHeight + "px";
-        panel.offsetHeight;
-        panel.style.height = "0px";
       };
 
-      const setItemOpen = (item, open) => {
+      const animatePanel = (item, open) => {
         const button = item.querySelector("button");
         const panel = item.querySelector(".faq-panel");
         if (!button || !panel) return;
+
+        const isOpen = item.classList.contains("is-open");
+        if (open === isOpen && panel.style.height !== "auto") return;
+
+        finishTransition(panel);
+
+        if (open) {
+          item.classList.add("is-open");
+          button.setAttribute("aria-expanded", "true");
+          panel.setAttribute("aria-hidden", "false");
+          panel.style.height = "0px";
+          panel.offsetHeight;
+          panel.style.height = panel.scrollHeight + "px";
+          panel._accordionEnd = (event) => {
+            if (event.propertyName !== "height") return;
+            finishTransition(panel);
+            if (item.classList.contains("is-open")) panel.style.height = "auto";
+          };
+          panel.addEventListener("transitionend", panel._accordionEnd);
+          return;
+        }
+
+        const currentHeight = panel.getBoundingClientRect().height;
         item.classList.toggle("is-open", open);
-        button.setAttribute("aria-expanded", String(open));
-        panel.setAttribute("aria-hidden", String(!open));
-        setPanelHeight(panel, open);
+        button.setAttribute("aria-expanded", "false");
+        panel.setAttribute("aria-hidden", "true");
+        panel.style.height = currentHeight + "px";
+        panel.offsetHeight;
+        panel.style.height = "0px";
+        panel._accordionEnd = (event) => {
+          if (event.propertyName !== "height") return;
+          finishTransition(panel);
+          if (!item.classList.contains("is-open")) panel.style.height = "0px";
+        };
+        panel.addEventListener("transitionend", panel._accordionEnd);
       };
 
       items.forEach((item, index) => {
@@ -84,8 +113,10 @@
         panel.style.height = open ? "auto" : "0px";
         button.addEventListener("click", () => {
           const willOpen = !item.classList.contains("is-open");
-          items.forEach((other) => setItemOpen(other, false));
-          if (willOpen) setItemOpen(item, true);
+          items.forEach((other) => {
+            if (other !== item) animatePanel(other, false);
+          });
+          animatePanel(item, willOpen);
         });
       });
     });
