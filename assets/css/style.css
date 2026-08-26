@@ -12,8 +12,8 @@
   --section-y: 82px;
   --section-head-gap: 34px;
   --hero-y: 80px;
-  --accordion-duration: 360ms;
-  --accordion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --accordion-duration: 420ms;
+  --accordion-ease: ease;
 }
 
 * {
@@ -2531,7 +2531,7 @@ p {
 .faq-icon i {
   grid-area: 1 / 1;
   line-height: 1;
-  transition: opacity 0.24s ease, transform var(--accordion-duration) var(--accordion-ease);
+  transition: opacity 0.28s ease, transform var(--accordion-duration) var(--accordion-ease);
 }
 
 .faq-icon .ph-minus {
@@ -2556,13 +2556,13 @@ p {
   opacity: 0;
   visibility: hidden;
   will-change: height, opacity;
-  transition: height var(--accordion-duration) var(--accordion-ease), opacity 0.28s ease, visibility 0s linear var(--accordion-duration);
+  transition: height var(--accordion-duration) var(--accordion-ease), opacity var(--accordion-duration) ease, visibility 0s linear var(--accordion-duration);
 }
 
 .faq-item.is-open .faq-panel {
   opacity: 1;
   visibility: visible;
-  transition: height var(--accordion-duration) var(--accordion-ease), opacity 0.28s ease 0.04s, visibility 0s;
+  transition: height var(--accordion-duration) var(--accordion-ease), opacity var(--accordion-duration) ease 0.03s, visibility 0s;
 }
 
 .faq-panel p {
