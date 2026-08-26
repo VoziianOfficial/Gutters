@@ -43,26 +43,49 @@
   function initAccordions() {
     document.querySelectorAll("[data-accordion]").forEach((group) => {
       const items = Array.from(group.querySelectorAll(".faq-item"));
+      const setPanelHeight = (panel, open) => {
+        if (open) {
+          panel.style.height = panel.scrollHeight + "px";
+          panel.addEventListener("transitionend", function onOpenEnd(event) {
+            if (event.propertyName !== "height") return;
+            panel.removeEventListener("transitionend", onOpenEnd);
+            if (panel.closest(".faq-item")?.classList.contains("is-open")) panel.style.height = "auto";
+          });
+          return;
+        }
+
+        const currentHeight = panel.offsetHeight;
+        panel.style.height = currentHeight + "px";
+        panel.offsetHeight;
+        panel.style.height = "0px";
+      };
+
+      const setItemOpen = (item, open) => {
+        const button = item.querySelector("button");
+        const panel = item.querySelector(".faq-panel");
+        if (!button || !panel) return;
+        item.classList.toggle("is-open", open);
+        button.setAttribute("aria-expanded", String(open));
+        panel.setAttribute("aria-hidden", String(!open));
+        setPanelHeight(panel, open);
+      };
+
       items.forEach((item, index) => {
         const button = item.querySelector("button");
         const panel = item.querySelector(".faq-panel");
         if (!button || !panel) return;
         const open = index === 0;
-        item.classList.toggle("is-open", open);
+        const panelId = panel.id || `faq-panel-${Math.random().toString(36).slice(2)}`;
+        panel.id = panelId;
+        button.setAttribute("aria-controls", panelId);
         button.setAttribute("aria-expanded", String(open));
-        panel.hidden = !open;
+        panel.setAttribute("aria-hidden", String(!open));
+        item.classList.toggle("is-open", open);
+        panel.style.height = open ? "auto" : "0px";
         button.addEventListener("click", () => {
           const willOpen = !item.classList.contains("is-open");
-          items.forEach((other) => {
-            const otherButton = other.querySelector("button");
-            const otherPanel = other.querySelector(".faq-panel");
-            other.classList.remove("is-open");
-            if (otherButton) otherButton.setAttribute("aria-expanded", "false");
-            if (otherPanel) otherPanel.hidden = true;
-          });
-          item.classList.toggle("is-open", willOpen);
-          button.setAttribute("aria-expanded", String(willOpen));
-          panel.hidden = !willOpen;
+          items.forEach((other) => setItemOpen(other, false));
+          if (willOpen) setItemOpen(item, true);
         });
       });
     });

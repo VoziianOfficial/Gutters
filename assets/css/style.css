@@ -9,6 +9,11 @@
   --white: #ffffff;
   --shadow: 0 18px 40px rgba(0, 23, 31, 0.11);
   --container: 1480px;
+  --section-y: 82px;
+  --section-head-gap: 34px;
+  --hero-y: 80px;
+  --accordion-duration: 360ms;
+  --accordion-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -57,7 +62,7 @@ textarea {
 }
 
 .section {
-  padding: 82px 0;
+  padding: var(--section-y) 0;
   background: var(--soft);
 }
 
@@ -71,7 +76,7 @@ textarea {
 }
 
 .tight {
-  padding: 58px 0;
+  padding: var(--section-y) 0;
 }
 
 .pill-label {
@@ -101,7 +106,7 @@ textarea {
   justify-content: space-between;
   align-items: end;
   gap: 28px;
-  margin-bottom: 34px;
+  margin-bottom: var(--section-head-gap);
 }
 
 h1,
@@ -433,7 +438,7 @@ p {
   align-items: center;
   gap: 54px;
   min-height: 690px;
-  padding: 80px 0 58px;
+  padding: var(--hero-y) 0;
 }
 
 .hero-copy p {
@@ -520,7 +525,7 @@ p {
 
 .service-swiper {
   padding: 10px 8px 44px;
-  margin: -10px -8px -20px;
+  margin: -10px -8px 0;
 }
 
 .testimonial-swiper .swiper-wrapper {
@@ -2108,7 +2113,7 @@ p {
 }
 
 .parallax-section {
-  padding: 0;
+  padding: var(--section-y) 0;
   overflow: hidden;
   background: var(--white);
 }
@@ -2293,6 +2298,7 @@ p {
   font-weight: 950;
   text-align: left;
   cursor: pointer;
+  transition: background 0.32s ease, color 0.32s ease;
 }
 
 .faq-item.is-open button {
@@ -2301,6 +2307,7 @@ p {
 }
 
 .faq-icon {
+  position: relative;
   display: grid;
   place-items: center;
   width: 46px;
@@ -2310,23 +2317,62 @@ p {
   background: var(--cyan);
   color: var(--white);
   font-size: 24px;
+  overflow: hidden;
+  transition: transform var(--accordion-duration) var(--accordion-ease), background 0.32s ease, color 0.32s ease;
 }
 
-.faq-icon .ph-minus,
+.faq-item.is-open .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-icon i {
+  grid-area: 1 / 1;
+  line-height: 1;
+  transition: opacity 0.24s ease, transform var(--accordion-duration) var(--accordion-ease);
+}
+
+.faq-icon .ph-minus {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.72);
+}
+
 .faq-item.is-open .faq-icon .ph-plus {
-  display: none;
+  opacity: 0;
+  transform: rotate(90deg) scale(0.72);
 }
 
 .faq-item.is-open .faq-icon .ph-minus {
-  display: block;
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
 }
 
 .faq-panel {
+  height: 0;
   padding: 24px 26px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  will-change: height, opacity;
+  transition: height var(--accordion-duration) var(--accordion-ease), opacity 0.28s ease, visibility 0s linear var(--accordion-duration);
+}
+
+.faq-item.is-open .faq-panel {
+  opacity: 1;
+  visibility: visible;
+  transition: height var(--accordion-duration) var(--accordion-ease), opacity 0.28s ease 0.04s, visibility 0s;
 }
 
 .faq-panel p {
   margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item button,
+  .faq-icon,
+  .faq-icon i,
+  .faq-panel {
+    transition: none;
+  }
 }
 
 .faq-detail-wrap {
@@ -2842,7 +2888,7 @@ input:-webkit-autofill:focus {
 }
 
 .subpage-hero {
-  padding: 84px 0;
+  padding: var(--section-y) 0;
   background: var(--blue);
   color: var(--white);
 }
@@ -2952,6 +2998,12 @@ input:-webkit-autofill:focus {
 }
 
 @media (max-width: 1180px) {
+  :root {
+    --section-y: 76px;
+    --section-head-gap: 32px;
+    --hero-y: 70px;
+  }
+
   .header-actions .btn,
   .site-nav,
   .topbar-inner .optional {
@@ -3046,12 +3098,14 @@ input:-webkit-autofill:focus {
 }
 
 @media (max-width: 820px) {
-  .container {
-    width: min(calc(100% - 36px), var(--container));
+  :root {
+    --section-y: 64px;
+    --section-head-gap: 28px;
+    --hero-y: 58px;
   }
 
-  .section {
-    padding: 64px 0;
+  .container {
+    width: min(calc(100% - 36px), var(--container));
   }
 
   .topbar-inner {
@@ -3091,7 +3145,7 @@ input:-webkit-autofill:focus {
 
   .hero-inner {
     min-height: auto;
-    padding: 58px 0 46px;
+    padding: var(--hero-y) 0;
     gap: 36px;
   }
 
@@ -3331,6 +3385,12 @@ input:-webkit-autofill:focus {
 }
 
 @media (max-width: 480px) {
+  :root {
+    --section-y: 56px;
+    --section-head-gap: 24px;
+    --hero-y: 50px;
+  }
+
   .container {
     width: min(calc(100% - 28px), var(--container));
   }
